@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sergei Grishutov</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sergei Grishutov, quantity and construction surveyor in Paphos, Cyprus. Quantity takeoffs, BoQs, colour PDF markups, earthworks, survey and AutoCAD drafting you can check line by line.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sergei Grishutov, quantity and construction surveyor">
+<meta property="og:description" content="Quantities, BoQs, markups, as-built and survey drawings you can check line by line.">
+<meta property="og:url" content="https://grishutov.github.io/">
+<meta property="og:image" content="https://grishutov.github.io/assets/og-banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316243D'/%3E%3Cpath d='M16 6 27 25H5Z' fill='none' stroke='%23F5BE5A' stroke-width='2.5' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='18.5' r='2.6' fill='%23F5BE5A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: a drawing sheet. Navy blueprint hero with a title block, then white sheet sections on one 1180px column;
+   work grid of 3 columns where the lead case spans two. Service colours act as a markup legend reused on the work cards. */
+:root {
+  --navy: #16243D;
+  --amber: #F5BE5A;
+  --on-amber: #16243D;
+  --amber-hover: #FFD27F;
+  --hero-panel: rgba(10, 18, 33, .35);
+
+  --bg: #FFFFFF;
+  --bg-alt: #F2F5F9;
+  --surface: #FFFFFF;
+  --line: #D8DFE9;
+  --line-strong: #AEBACD;
+  --ink: #16243D;
+  --text: #2C3953;
+  --muted: #56647F;
+  --link: #1C56A3;
+  --focus: #1C56A3;
+  --grid: rgba(22, 36, 61, .05);
+  --img-bg: #FFFFFF;
+
+  --hero-bg: #16243D;
+  --hero-ink: #FFFFFF;
+  --hero-text: #D6DEEA;
+  --hero-muted: #A9B7CC;
+  --hero-line: rgba(255, 255, 255, .22);
+  --hero-line-strong: rgba(255, 255, 255, .42);
+  --hero-grid: rgba(255, 255, 255, .045);
+  --hero-grid-major: rgba(255, 255, 255, .085);
+
+  --mk-blue: #2D6FCB;
+  --mk-red: #CF3F3B;
+  --mk-orange: #CF7A18;
+  --mk-teal: #16897F;
+  --mk-purple: #7E4FC0;
+  --mk-green: #3C8F3A;
+
+  --f-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --step--1: 0.8125rem;  /* 13px labels */
+  --step-0: 1.0625rem;   /* 17px body */
+  --step-1: 1.25rem;     /* 20px */
+  --step-2: 1.5rem;      /* 24px card titles */
+  --step-3: clamp(1.875rem, 1.4rem + 1.8vw, 2.625rem);  /* section titles */
+  --step-4: clamp(2.75rem, 1.9rem + 4.2vw, 4.75rem);    /* name */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1524;
+    --bg-alt: #101C2F;
+    --surface: #13203A;
+    --line: #26385A;
+    --line-strong: #435A80;
+    --ink: #F2F5FA;
+    --text: #D2DAE7;
+    --muted: #9EACC2;
+    --link: #F5BE5A;
+    --focus: #F5BE5A;
+    --grid: rgba(255, 255, 255, .035);
+    --hero-bg: #16243D;
+    --mk-blue: #6EA4F0;
+    --mk-red: #F06A64;
+    --mk-orange: #F2A04A;
+    --mk-teal: #3FC1B3;
+    --mk-purple: #B08BEA;
+    --mk-green: #6CC46A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1524;
+  --bg-alt: #101C2F;
+  --surface: #13203A;
+  --line: #26385A;
+  --line-strong: #435A80;
+  --ink: #F2F5FA;
+  --text: #D2DAE7;
+  --muted: #9EACC2;
+  --link: #F5BE5A;
+  --focus: #F5BE5A;
+  --grid: rgba(255, 255, 255, .035);
+  --hero-bg: #16243D;
+  --mk-blue: #6EA4F0;
+  --mk-red: #F06A64;
+  --mk-orange: #F2A04A;
+  --mk-teal: #3FC1B3;
+  --mk-purple: #B08BEA;
+  --mk-green: #6CC46A;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+img { max-width: 100%; height: auto; display: block; }
+[hidden] { display: none !important; }
+h1, h2, h3, h4 { margin: 0; color: var(--ink); text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul, ol, dl, dd { margin: 0; padding: 0; }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+section[id], article[id] { scroll-margin-top: 16px; }
+
+.wrap {
+  width: 100%;
+  max-width: 1212px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- labels and type ---------- */
+.eyebrow, .tag, .tb dt, .tl-when, .num, .chip, .guide-kind, .figline, .note-label {
+  font-family: var(--f-mono);
+  font-size: var(--step--1);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.eyebrow { color: var(--muted); font-weight: 500; }
+.sec-head { display: grid; gap: 12px; max-width: 46rem; }
+.sec-head h2 {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: var(--step-3);
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+}
+.sec-head p { color: var(--muted); font-size: 1.125rem; max-width: 62ch; }
+.section { padding-block: clamp(56px, 7vw, 96px); }
+.section > .wrap { display: grid; gap: clamp(32px, 4vw, 48px); }
+.band { background-color: var(--bg-alt); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 32px 32px; border-block: 1px solid var(--line); }
+
+/* ---------- buttons ---------- */
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 48px; padding: 0 20px;
+  font: 600 0.9375rem/1 var(--f-body);
+  text-decoration: none;
+  border: 1.5px solid transparent; border-radius: 3px;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+.btn .arr { font-weight: 500; }
+.btn-primary { background: var(--amber); color: var(--on-amber); border-color: var(--amber); }
+.btn-primary:hover { background: var(--amber-hover); border-color: var(--amber-hover); }
+.btn-ghost { color: var(--hero-ink); border-color: var(--hero-line-strong); }
+.btn-ghost:hover { border-color: var(--hero-ink); }
+.btn-outline { color: var(--ink); border-color: var(--line-strong); background: var(--surface); }
+.btn-outline:hover { border-color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero {
+  --focus: var(--amber);
+  color: var(--hero-text);
+  background-color: var(--hero-bg);
+  background-image:
+    linear-gradient(var(--hero-grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hero-grid-major) 1px, transparent 1px),
+    linear-gradient(var(--hero-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hero-grid) 1px, transparent 1px);
+  background-size: 160px 160px, 160px 160px, 32px 32px, 32px 32px;
+  background-position: -1px -1px;
+}
+.hero a { color: var(--hero-ink); }
+.topnav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding-block: 22px; border-bottom: 1px solid var(--hero-line); }
+.mark { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--hero-ink); display: inline-flex; align-items: center; gap: 10px; }
+.mark svg { width: 22px; height: 20px; flex: none; }
+.mark-tri { fill: none; stroke: var(--amber); stroke-width: 2.2; stroke-linejoin: round; }
+.mark-dot { fill: var(--amber); }
+.topnav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.topnav ul a { font-size: 0.9375rem; color: var(--hero-text); text-decoration: none; }
+.topnav ul a:hover { color: var(--hero-ink); text-decoration: underline; }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: end;
+  padding-block: clamp(48px, 7vw, 96px) clamp(56px, 7vw, 88px);
+}
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.rule { width: 56px; height: 5px; background: var(--amber); }
+.hero .role { font-family: var(--f-mono); font-size: 0.875rem; letter-spacing: .08em; text-transform: uppercase; color: var(--amber); font-weight: 500; }
+.hero h1 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: var(--step-4);
+  line-height: .95;
+  letter-spacing: -0.01em;
+  color: var(--hero-ink);
+}
+.hero .promise { font-size: clamp(1.25rem, 1.05rem + .8vw, 1.625rem); line-height: 1.35; font-weight: 500; color: var(--hero-ink); max-width: 30ch; }
+.hero .sub { color: var(--hero-text); max-width: 56ch; }
+.hero .btn-row { margin-top: 6px; }
+
+/* title block, as in the corner of a drawing sheet */
+.tb { border: 1.5px solid var(--hero-line-strong); background: var(--hero-panel); min-width: 0; }
+.tb-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 14px 16px; border-bottom: 1.5px solid var(--hero-line-strong); }
+.tb-head strong { font-family: var(--f-display); font-weight: 600; font-size: 1.25rem; letter-spacing: .04em; text-transform: uppercase; color: var(--hero-ink); }
+.tb-head span { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .06em; text-transform: uppercase; color: var(--amber); }
+.tb dl > div { display: grid; grid-template-columns: 124px minmax(0, 1fr); border-top: 1px solid var(--hero-line); }
+.tb dl > div:first-child { border-top: 0; }
+.tb dt { padding: 11px 12px 11px 16px; color: var(--hero-muted); border-right: 1px solid var(--hero-line); line-height: 1.5; }
+.tb dd { padding: 10px 16px 10px 12px; color: var(--hero-ink); font-size: 0.9375rem; line-height: 1.5; }
+
+/* ---------- services as a markup legend ---------- */
+.sw { display: inline-block; flex: none; margin-top: 3px; width: 26px; height: 12px; border: 2px solid var(--sw); background: color-mix(in srgb, var(--sw) 22%, transparent); border-radius: 1px; }
+.sw-takeoff { --sw: var(--mk-blue); }
+.sw-steel { --sw: var(--mk-red); }
+.sw-earth { --sw: var(--mk-orange); }
+.sw-survey { --sw: var(--mk-teal); }
+.sw-cad { --sw: var(--mk-purple); }
+.sw-auto { --sw: var(--mk-green); }
+
+.services { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 40px; }
+.services li { display: grid; gap: 10px; align-content: start; padding-top: 20px; border-top: 1px solid var(--line-strong); min-width: 0; }
+.services h3 { display: flex; align-items: center; gap: 12px; font-family: var(--f-display); font-weight: 600; font-size: 1.375rem; line-height: 1.15; }
+.services p { color: var(--text); font-size: 1rem; }
+.services h3 .sw { margin-top: 0; }
+
+/* ---------- work ---------- */
+.nda { display: flex; gap: 12px; align-items: baseline; color: var(--muted); font-size: 1rem; max-width: 62ch; }
+.note-label { color: var(--ink); font-weight: 500; flex: none; }
+.work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.card { display: flex; flex-direction: column; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.card-media { display: block; position: relative; aspect-ratio: 16 / 10; max-width: 100%; background: var(--img-bg); border-bottom: 1px solid var(--line); overflow: hidden; }
+.card-media img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transition: transform .35s ease; }
+a.card-media:hover img { transform: scale(1.03); }
+.card-body { display: flex; flex-direction: column; gap: 12px; padding: 20px 22px 22px; flex: 1; min-width: 0; }
+.tag { display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 0.75rem; line-height: 1.4; }
+.card h3 { font-family: var(--f-display); font-weight: 600; font-size: var(--step-2); line-height: 1.12; }
+.card p { font-size: 1rem; }
+.figline { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 0.75rem; }
+.figline b { font-family: var(--f-display); font-size: 1.25rem; font-weight: 600; color: var(--ink); letter-spacing: 0; margin-right: 4px; font-variant-numeric: tabular-nums; }
+.more { margin-top: auto; padding-top: 6px; font-weight: 600; font-size: 0.9375rem; align-self: flex-start; }
+
+/* lead case */
+.card-lead { grid-column: span 2; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+.card-lead .card-media { aspect-ratio: auto; border-bottom: 0; border-right: 1px solid var(--line); min-height: 320px; }
+.card-lead .card-media img { position: absolute; inset: 0; }
+.card-lead .card-body { padding: 24px 26px 26px; gap: 14px; }
+.card-lead h3 { font-size: 1.75rem; }
+.card-lead .where { color: var(--muted); font-size: 0.9375rem; }
+.figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.figs > div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; padding: 12px 14px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 0; }
+.figs dt { font-size: 0.875rem; color: var(--muted); line-height: 1.35; }
+.figs dd { font-family: var(--f-display); font-weight: 600; font-size: 2rem; line-height: 1.05; color: var(--ink); font-variant-numeric: tabular-nums; }
+.figs dd span { font-size: 1.125rem; font-weight: 500; color: var(--muted); margin-left: 3px; }
+.card .checks { color: var(--muted); font-size: 0.9375rem; }
+
+/* earthworks placeholder */
+.earth-media { background: var(--bg-alt); }
+.earth-media svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.card-earth .card-media img { position: absolute; inset: 0; }
+.badge { position: absolute; top: 12px; right: 12px; font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--on-amber); background: var(--amber); padding: 4px 8px; border-radius: 2px; }
+.sx-grid { stroke: var(--line); stroke-width: 1; }
+.sx-cut-bg { fill: var(--mk-orange); fill-opacity: .16; }
+.sx-fill-bg { fill: var(--mk-blue); fill-opacity: .16; }
+.sx-hatch-cut { stroke: var(--mk-orange); stroke-width: 2; }
+.sx-hatch-fill { stroke: var(--mk-blue); stroke-width: 2; }
+.sx-eg { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 9 6; }
+.sx-fg { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.sx-zero { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 3 4; }
+.sx-txt { fill: var(--muted); font-family: var(--f-mono); font-size: 13px; letter-spacing: .06em; }
+.sx-big { fill: var(--ink); font-family: var(--f-display); font-weight: 600; font-size: 22px; letter-spacing: .08em; }
+
+/* ---------- how I work: stations on a traverse ---------- */
+.traverse { list-style: none; position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.traverse::before { content: ""; position: absolute; left: 14px; right: calc((100% - 96px) / 4 - 14px); top: 13px; border-top: 2px dashed var(--line-strong); }
+.traverse li { position: relative; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.stn { display: flex; align-items: center; gap: 0; }
+.stn svg { width: 28px; height: 26px; flex: none; background: var(--bg); }
+.stn-tri { fill: var(--bg); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+.stn-dot { fill: var(--mk-orange); }
+.num { color: var(--muted); font-weight: 500; background: var(--bg); padding: 0 10px; }
+.traverse h3 { font-family: var(--f-display); font-weight: 600; font-size: 1.375rem; line-height: 1.15; margin-top: 6px; }
+.traverse p { font-size: 1rem; }
+
+.exchange { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.exchange > div { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 22px 24px; min-width: 0; }
+.exchange h3 { font-family: var(--f-display); font-weight: 600; font-size: 1.25rem; margin-bottom: 10px; }
+.exchange ul { list-style: none; display: grid; gap: 8px; }
+.exchange li { position: relative; padding-left: 20px; font-size: 1rem; }
+.exchange li::before { content: ""; position: absolute; left: 0; top: .62em; width: 9px; height: 9px; border: 2px solid var(--line-strong); }
+.exchange .get li::before { border-color: var(--mk-blue); background: color-mix(in srgb, var(--mk-blue) 22%, transparent); }
+
+.start { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; padding: 24px 26px; border: 1.5px dashed var(--line-strong); border-radius: 4px; background: var(--surface); }
+.start p { font-family: var(--f-display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; color: var(--ink); max-width: 36ch; }
+.start p span { display: block; font-family: var(--f-body); font-weight: 400; font-size: 1rem; color: var(--muted); margin-top: 4px; }
+
+/* ---------- background ---------- */
+.bg-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); }
+.col-label { font-family: var(--f-mono); font-size: var(--step--1); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--line-strong); margin-bottom: 22px; }
+.timeline { list-style: none; display: grid; gap: 30px; }
+.timeline > li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 20px; }
+.tl-when { color: var(--ink); font-weight: 500; padding-top: 4px; }
+.tl-body { display: grid; gap: 10px; min-width: 0; }
+.tl-body h4 { font-family: var(--f-display); font-weight: 600; font-size: 1.375rem; line-height: 1.15; }
+.tl-body > p { font-size: 1rem; }
+.facts { list-style: none; display: grid; gap: 6px; }
+.facts li { position: relative; padding-left: 18px; font-size: 1rem; }
+.facts li::before { content: ""; position: absolute; left: 0; top: .7em; width: 8px; height: 2px; background: var(--mk-orange); }
+.side { display: grid; gap: 40px; align-content: start; }
+.edu { list-style: none; display: grid; gap: 16px; }
+.edu li { display: grid; gap: 2px; }
+.edu strong { color: var(--ink); font-weight: 600; }
+.edu span.when { font-family: var(--f-mono); font-size: var(--step--1); color: var(--muted); letter-spacing: .04em; }
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 0.75rem; color: var(--ink); border: 1px solid var(--line-strong); padding: 6px 10px; border-radius: 2px; text-transform: none; letter-spacing: .02em; }
+
+/* ---------- guides ---------- */
+.guides { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.guides a { display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 22px 24px 24px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); text-decoration: none; color: var(--text); transition: border-color .15s ease; }
+.guides a:hover { border-color: var(--line-strong); }
+.guides a:hover .g-title { text-decoration: underline; text-underline-offset: 3px; }
+.guide-kind { color: var(--muted); font-size: 0.75rem; }
+.g-title { font-family: var(--f-display); font-weight: 600; font-size: 1.375rem; line-height: 1.15; color: var(--ink); }
+.guides p { font-size: 1rem; }
+.g-link { color: var(--link); font-weight: 600; font-size: 0.9375rem; margin-top: auto; padding-top: 4px; }
+
+/* ---------- footer ---------- */
+.foot { color: var(--hero-text); }
+.foot .wrap { display: grid; gap: 28px; padding-block: clamp(48px, 6vw, 72px) 28px; }
+.foot h2 { font-family: var(--f-display); font-weight: 600; font-size: var(--step-3); line-height: 1.08; color: var(--hero-ink); }
+.foot .lead { max-width: 58ch; }
+.foot-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 22px; border-top: 1px solid var(--hero-line); font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .04em; color: var(--hero-muted); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1000px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .tb { max-width: 560px; }
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card-earth { grid-column: span 2; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+  .card-earth .card-media { aspect-ratio: auto; min-height: 260px; border-bottom: 0; border-right: 1px solid var(--line); }
+  .traverse { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
+  .traverse::before { display: none; }
+  .bg-grid { grid-template-columns: minmax(0, 1fr); }
+  .guides { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 680px) {
+  .services { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .work-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .card-lead, .card-earth { grid-column: auto; display: flex; flex-direction: column; }
+  .card-lead .card-media, .card-earth .card-media { aspect-ratio: 4 / 3; min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .card-earth .card-media { aspect-ratio: 16 / 10; }
+  .card-lead .card-body, .card-body { padding: 18px 18px 20px; }
+  .card-lead h3 { font-size: 1.5rem; }
+  .figs dd { font-size: 1.75rem; }
+  .traverse { grid-template-columns: minmax(0, 1fr); row-gap: 28px; padding-left: 0; }
+  .traverse::before { display: block; left: 13px; right: auto; top: 14px; bottom: 14px; border-top: 0; border-left: 2px dashed var(--line-strong); }
+  .traverse li { grid-template-columns: 28px minmax(0, 1fr); column-gap: 16px; }
+  .traverse li .stn { grid-row: span 3; align-self: start; flex-direction: column; align-items: flex-start; }
+  .traverse li .num { padding: 4px 0; }
+  .traverse h3 { margin-top: 0; }
+  .stn { position: relative; }
+  .exchange { grid-template-columns: minmax(0, 1fr); }
+  .timeline > li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .start { padding: 20px; }
+  .start p { font-size: 1.3125rem; }
+  .tb dl > div { grid-template-columns: 112px minmax(0, 1fr); }
+  .tb dt { padding-left: 10px; padding-right: 10px; }
+  .tb dd { padding-left: 10px; padding-right: 12px; }
+  .tb-head { padding-inline: 12px; }
+  .topnav ul { gap: 4px 14px; }
+  .topnav ul a { font-size: 0.875rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body id="top">
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="topnav" aria-label="Sections">
+      <a class="mark" href="#top">
+        <svg viewBox="0 0 28 26" aria-hidden="true"><path class="mark-tri" d="M14 2.5 26 23.5H2Z"/><circle class="mark-dot" cx="14" cy="16.5" r="2.6"/></svg>
+        S. Grishutov
+      </a>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#process">How I work</a></li>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#guides">Guides</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="rule" aria-hidden="true"></div>
+        <p class="role">Quantity &amp; construction surveyor</p>
+        <h1>Sergei Grishutov</h1>
+        <p class="promise">Quantities, BoQs, markups, as-built and survey drawings you can check line by line.</p>
+        <p class="sub">Ten years on construction sites in Moscow, from mine surveyor on the metro to head of the survey department. Now I measure villas, townhouses and an apartment building in Cyprus.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01f6d5a39a7c8194e1" target="_blank" rel="noopener">Hire me on Upwork <span class="arr" aria-hidden="true">&#8599;</span></a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/sergei-grishutov-1b437939b" target="_blank" rel="noopener">LinkedIn <span class="arr" aria-hidden="true">&#8599;</span></a>
+          <a class="btn btn-ghost" href="https://github.com/Grishutov" target="_blank" rel="noopener">GitHub <span class="arr" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+
+      <aside class="tb" aria-label="Summary">
+        <div class="tb-head"><strong>Portfolio</strong><span>Sheet 1 of 1</span></div>
+        <dl>
+          <div><dt>Drawn by</dt><dd>S. Grishutov</dd></div>
+          <div><dt>Discipline</dt><dd>Quantity surveying, construction surveying</dd></div>
+          <div><dt>Experience</dt><dd>11+ years in construction</dd></div>
+          <div><dt>Based in</dt><dd>Paphos, Cyprus (UTC+2)</dd></div>
+          <div><dt>Languages</dt><dd>English, Russian</dd></div>
+          <div><dt>Units</dt><dd>Metric and imperial</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="section" id="services" aria-labelledby="services-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Services</p>
+      <h2 id="services-h">What I measure and draw</h2>
+      <p>Send drawings in PDF or DWG, or survey data. You get Excel with a drawing reference on every line and a colour markup of everything measured.</p>
+    </div>
+    <ul class="services">
+      <li>
+        <h3><span class="sw sw-takeoff" aria-hidden="true"></span>Quantity takeoff &amp; BoQ</h3>
+        <p>From PDF or DWG: drywall and ceilings, finishes, concrete, masonry, doors and windows, MEP counts. Excel with a drawing reference on every line, plus a colour PDF markup.</p>
+      </li>
+      <li>
+        <h3><span class="sw sw-steel" aria-hidden="true"></span>Structural steel takeoff</h3>
+        <p>Member list by mark, lengths, kg/m and weights, waste allowance, marked-up drawings.</p>
+      </li>
+      <li>
+        <h3><span class="sw sw-earth" aria-hidden="true"></span>Earthworks cut and fill</h3>
+        <p>From survey points, contours or a grading plan. TIN volumes checked by grid and cross-sections, a cut/fill map, topsoil and shrink stated.</p>
+      </li>
+      <li>
+        <h3><span class="sw sw-survey" aria-hidden="true"></span>Survey drafting</h3>
+        <p>Survey data to clean topographic and as-built drawings in AutoCAD and Civil 3D.</p>
+      </li>
+      <li>
+        <h3><span class="sw sw-cad" aria-hidden="true"></span>AutoCAD drafting</h3>
+        <p>Floor plans and site plans, PDF or scan to a clean layered DWG, permit sheets.</p>
+      </li>
+      <li>
+        <h3><span class="sw sw-auto" aria-hidden="true"></span>Excel and Python automation</h3>
+        <p>Excel, Python, SQL and AutoLISP for repetitive takeoff work.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section band" id="work" aria-labelledby="work-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Selected work</p>
+      <h2 id="work-h">Takeoffs and drawings you can open and check</h2>
+      <p>Each sample links to its files on GitHub: Excel, marked-up PDFs, DWGs and notes.</p>
+      <p class="nda"><span class="note-label">NDA</span><span>Client work is under NDA, so these samples use public bid documents or sample drawings I prepared. No client data.</span></p>
+    </div>
+
+    <div class="work-grid">
+
+      <article class="card card-lead" id="dane-county">
+        <a class="card-media" href="https://github.com/Grishutov/takeoff-samples#6-drywall-and-ceilings---public-office-fit-out-madison-wi" target="_blank" rel="noopener" aria-label="Open the Dane County drywall takeoff on GitHub">
+          <img src="assets/dane-county-a2-1.png" width="1200" height="900" alt="Colour takeoff markup of partitions by type on sheet A2.1 of the Dane County bid set" loading="lazy">
+        </a>
+        <div class="card-body">
+          <p class="tag"><span class="sw sw-takeoff" aria-hidden="true"></span>Public bid documents · US units</p>
+          <h3>Drywall and ceilings on a real public bid set</h3>
+          <p class="where">Third-floor tenant improvements, City-County Building, Madison WI. Dane County Public Works, RFB 108049.</p>
+          <dl class="figs">
+            <div><dt>Partitions in 9 types</dt><dd>686<span>LF</span></dd></div>
+            <div><dt>GWB net of openings</dt><dd>12,284<span>SF</span></dd></div>
+            <div><dt>ACT ceilings</dt><dd>8,215<span>SF</span></dd></div>
+            <div><dt>Doors deducted</dt><dd>21</dd></div>
+          </dl>
+          <p class="checks">15 queries to the client. Lengths taken from the PDF vector linework, scale checked on 3 sheets.</p>
+          <a class="more" href="https://github.com/Grishutov/takeoff-samples#6-drywall-and-ceilings---public-office-fit-out-madison-wi" target="_blank" rel="noopener">View the takeoff on GitHub &#8594;</a>
+        </div>
+      </article>
+
+      <article class="card card-earth" id="earthworks">
+        <a class="card-media" href="https://github.com/Grishutov/takeoff-samples#7-earthwork-cut-and-fill---commercial-site-us-units" target="_blank" rel="noopener" aria-label="Open the earthwork cut and fill sample on GitHub">
+          <img src="assets/earthworks-cutfill.jpg" width="960" height="600" alt="Cut and fill map of a building pad and parking: cut in red, fill in blue, the 0-line and the daylight line" loading="lazy">
+        </a>
+        <div class="card-body">
+          <p class="tag"><span class="sw sw-earth" aria-hidden="true"></span>Portfolio sample · US units</p>
+          <h3>Earthwork cut and fill</h3>
+          <p>A 300 x 220 ft commercial site: 667 survey points to a TIN, a building pad and parking at 2 %, 3:1 slopes to daylight. Volumes by three methods that agree within 2 %: TIN to TIN, a 25 ft grid and average end areas.</p>
+          <ul class="figline">
+            <li><b>1,302</b>CY cut</li>
+            <li><b>632</b>CY fill</li>
+            <li><b>566</b>CY topsoil</li>
+          </ul>
+          <a class="more" href="https://github.com/Grishutov/takeoff-samples#7-earthwork-cut-and-fill---commercial-site-us-units" target="_blank" rel="noopener">View on GitHub &#8594;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card-media" href="https://github.com/Grishutov/steel-takeoff-tools" target="_blank" rel="noopener" aria-label="Open the steel takeoff tools on GitHub">
+          <img src="assets/steel-shed-markup.png" width="960" height="600" alt="Steel takeoff markup of a portal-frame shed, members colour-coded by type with a legend" loading="lazy">
+        </a>
+        <div class="card-body">
+          <p class="tag"><span class="sw sw-steel" aria-hidden="true"></span>Portfolio sample · Metric</p>
+          <h3>Structural steel takeoff</h3>
+          <p>A 24 x 12 m portal-frame shed measured the way fabricators ask for it. Every member colour-coded by type with count tags, and an Excel BoM by mark with lengths, kg/m, weights and a waste allowance.</p>
+          <a class="more" href="https://github.com/Grishutov/steel-takeoff-tools" target="_blank" rel="noopener">View on GitHub &#8594;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card-media" href="https://github.com/Grishutov/takeoff-samples#2-drywall-and-ceiling-takeoff---office-fit-out-us-units" target="_blank" rel="noopener" aria-label="Open the office fit-out drywall takeoff on GitHub">
+          <img src="assets/drywall-office-markup.png" width="960" height="600" alt="Partition plan of an office suite with wall runs colour-coded by partition type" loading="lazy">
+        </a>
+        <div class="card-body">
+          <p class="tag"><span class="sw sw-takeoff" aria-hidden="true"></span>Portfolio sample · US units</p>
+          <h3>Drywall and ceilings, office fit-out</h3>
+          <p>A 2,400 SF suite: partitions by type, GWB, studs and track, ACT and grid. Every quantity is a live formula.</p>
+          <ul class="figline">
+            <li><b>318</b>LF partitions</li>
+            <li><b>5,286</b>SF GWB</li>
+            <li><b>2,200</b>SF ACT</li>
+          </ul>
+          <a class="more" href="https://github.com/Grishutov/takeoff-samples#2-drywall-and-ceiling-takeoff---office-fit-out-us-units" target="_blank" rel="noopener">View on GitHub &#8594;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card-media" href="https://github.com/Grishutov/takeoff-samples#4-scanned-plan-to-a-clean-dwg" target="_blank" rel="noopener" aria-label="Open the scan to DWG sample on GitHub">
+          <img src="assets/scan-to-dwg.jpg" width="640" height="400" alt="A scanned blue-line house plan beside its clean layered AutoCAD redraw" loading="lazy">
+        </a>
+        <div class="card-body">
+          <p class="tag"><span class="sw sw-cad" aria-hidden="true"></span>Portfolio sample · AutoCAD</p>
+          <h3>Scan to clean DWG</h3>
+          <p>An old blue-line plan, scanned at an angle, redrawn in AutoCAD with proper layers, door and window blocks and true dimensions. Scaled to the 40'-0" overall and checked against the 28'-0" one.</p>
+          <a class="more" href="https://github.com/Grishutov/takeoff-samples#4-scanned-plan-to-a-clean-dwg" target="_blank" rel="noopener">View on GitHub &#8594;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card-media" href="https://github.com/Grishutov/takeoff-samples#3-painting-takeoff---residence-bedroom-wing" target="_blank" rel="noopener" aria-label="Open the painting takeoff on GitHub">
+          <img src="assets/painting-nz-markup.png" width="960" height="600" alt="Painting takeoff markup of a bedroom wing, rooms shaded with measured dimensions" loading="lazy">
+        </a>
+        <div class="card-body">
+          <p class="tag"><span class="sw sw-takeoff" aria-hidden="true"></span>Public example plan · NZ</p>
+          <h3>Painting takeoff, New Zealand</h3>
+          <p>Room by room: walls, ceilings, doors and trims in m² and lm, to NZ painting practice. Openings over 0.5 m² deducted, assumed wall heights flagged.</p>
+          <a class="more" href="https://github.com/Grishutov/takeoff-samples#3-painting-takeoff---residence-bedroom-wing" target="_blank" rel="noopener">View on GitHub &#8594;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card-media" href="https://github.com/Grishutov/boq-measurement-template" target="_blank" rel="noopener" aria-label="Open the BoQ measurement template on GitHub">
+          <img src="assets/boq-template.png" width="640" height="400" alt="Excel dimension sheet with deductions in red, summed into a bill of quantities" loading="lazy">
+        </a>
+        <div class="card-body">
+          <p class="tag"><span class="sw sw-takeoff" aria-hidden="true"></span>Excel template</p>
+          <h3>BoQ measurement template</h3>
+          <p>Dimension sheet, bill and summary in Excel. Every quantity in the bill is a formula over measured lines, deductions stay visible in red, and assumptions go on a queries sheet.</p>
+          <a class="more" href="https://github.com/Grishutov/boq-measurement-template" target="_blank" rel="noopener">View on GitHub &#8594;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card-media" href="https://github.com/Grishutov/takeoff-samples#5-us-residential-permit-sheet" target="_blank" rel="noopener" aria-label="Open the permit sheet sample on GitHub">
+          <img src="assets/permit-sheet.png" width="960" height="600" alt="AutoCAD permit sheet with riser diagrams, a panel schedule and a load calculation" loading="lazy">
+        </a>
+        <div class="card-body">
+          <p class="tag"><span class="sw sw-cad" aria-hidden="true"></span>Portfolio sample · AutoCAD</p>
+          <h3>US residential permit sheet</h3>
+          <p>An 11x17 sheet plotted from AutoCAD: kitchen DWV and water supply risers, electrical riser, 24-space panel schedule and NEC 220.83(A) load calculation.</p>
+          <a class="more" href="https://github.com/Grishutov/takeoff-samples#5-us-residential-permit-sheet" target="_blank" rel="noopener">View on GitHub &#8594;</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="process" aria-labelledby="process-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">How I work</p>
+      <h2 id="process-h">The same four steps on every job</h2>
+    </div>
+
+    <ol class="traverse">
+      <li>
+        <div class="stn"><svg viewBox="0 0 28 26" aria-hidden="true"><path class="stn-tri" d="M14 2.5 26 23.5H2Z"/><circle class="stn-dot" cx="14" cy="16.5" r="2.8"/></svg><span class="num">01</span></div>
+        <h3>Read the whole set first</h3>
+        <p>Missing dimensions and conflicts go on a query list before measuring starts.</p>
+      </li>
+      <li>
+        <div class="stn"><svg viewBox="0 0 28 26" aria-hidden="true"><path class="stn-tri" d="M14 2.5 26 23.5H2Z"/><circle class="stn-dot" cx="14" cy="16.5" r="2.8"/></svg><span class="num">02</span></div>
+        <h3>Measure on a colour markup</h3>
+        <p>One colour per item on the PDF, so you can see what is included and what is not.</p>
+      </li>
+      <li>
+        <div class="stn"><svg viewBox="0 0 28 26" aria-hidden="true"><path class="stn-tri" d="M14 2.5 26 23.5H2Z"/><circle class="stn-dot" cx="14" cy="16.5" r="2.8"/></svg><span class="num">03</span></div>
+        <h3>Excel with references</h3>
+        <p>Every line shows the drawing, the location and the dimensions used.</p>
+      </li>
+      <li>
+        <div class="stn"><svg viewBox="0 0 28 26" aria-hidden="true"><path class="stn-tri" d="M14 2.5 26 23.5H2Z"/><circle class="stn-dot" cx="14" cy="16.5" r="2.8"/></svg><span class="num">04</span></div>
+        <h3>Check before delivery</h3>
+        <p>Totals are cross-checked by a second method, such as room by room against the gross area. Assumptions and exclusions are listed.</p>
+      </li>
+    </ol>
+
+    <div class="exchange">
+      <div class="send">
+        <h3>Send me</h3>
+        <ul>
+          <li>Drawings in PDF or DWG, the full set if you have it</li>
+          <li>For earthworks: survey points or contours and the grading design</li>
+          <li>The scope: trades or items to measure</li>
+          <li>Your measuring rules, or a sample of your format</li>
+          <li>Deadline and units, metric or imperial</li>
+        </ul>
+      </div>
+      <div class="get">
+        <h3>You get</h3>
+        <ul>
+          <li>An Excel takeoff, or your own template filled in</li>
+          <li>A colour PDF markup of everything measured</li>
+          <li>A query list with assumptions and exclusions</li>
+          <li>Totals cross-checked before delivery</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="start">
+      <p>Not sure yet? Start with one sheet or one trade.<span>You can check the format and the numbers before you send the full set.</span></p>
+      <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01f6d5a39a7c8194e1" target="_blank" rel="noopener">Message me on Upwork <span class="arr" aria-hidden="true">&#8599;</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section band" id="background" aria-labelledby="background-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Background</p>
+      <h2 id="background-h">From the total station to the bill of quantities</h2>
+      <p>11+ years in construction. Ten years of surveying on Moscow sites, now quantity surveying in Cyprus.</p>
+    </div>
+
+    <div class="bg-grid">
+      <div>
+        <h3 class="col-label">Experience</h3>
+        <ol class="timeline">
+          <li>
+            <p class="tl-when">Now · Cyprus</p>
+            <div class="tl-body">
+              <h4>Technical engineer, quantity surveying</h4>
+              <p>At a real estate developer. BoQs for villas, townhouses and an apartment building, with 3D concrete models to cross-check the volumes.</p>
+            </div>
+          </li>
+          <li>
+            <p class="tl-when">10 years · Moscow</p>
+            <div class="tl-body">
+              <h4>Construction surveying, from mine surveyor to head of the survey department</h4>
+              <ul class="facts">
+                <li>Moscow metro, and two Sheremetyevo Airport tunnels bored with a Herrenknecht TBM</li>
+                <li>Office buildings, luxury housing and towers up to 50 storeys</li>
+                <li>Setting out, topographic and as-built surveys with Sokkia and Leica total stations and GNSS</li>
+                <li>Deformation monitoring</li>
+                <li>Thousands of as-built drawings in AutoCAD, earthwork volumes in Civil 3D</li>
+                <li>Monthly checks of contractors' quantities</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="side">
+        <div>
+          <h3 class="col-label">Education</h3>
+          <ul class="edu">
+            <li><span class="when">2025–2026</span><strong>Data analytics, Yandex Practicum</strong><span>One-year program: SQL, Python, Excel, BI</span></li>
+            <li><span class="when">2014</span><strong>Mining engineer, NUST MISIS</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="col-label">Tools</h3>
+          <ul class="chips">
+            <li class="chip">Bluebeam Revu</li>
+            <li class="chip">AutoCAD</li>
+            <li class="chip">Civil 3D</li>
+            <li class="chip">Excel</li>
+            <li class="chip">Python</li>
+            <li class="chip">SQL</li>
+            <li class="chip">AutoLISP</li>
+            <li class="chip">QGIS</li>
+            <li class="chip">Leica and Sokkia total stations</li>
+            <li class="chip">GNSS</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="guides" aria-labelledby="guides-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Guides</p>
+      <h2 id="guides-h">Checklists I follow</h2>
+      <p>Short, practical guides from day-to-day work with drawings, published on GitHub. The trade-by-trade takeoff checklists (drywall, finishes, concrete, steel, doors, earthworks, checking a BoQ) are in <a href="https://github.com/Grishutov/takeoff-checklists" target="_blank" rel="noopener">takeoff-checklists</a>.</p>
+    </div>
+    <ul class="guides">
+      <li>
+        <a href="https://github.com/Grishutov/cad-guides/blob/main/georeference-dwg.md" target="_blank" rel="noopener">
+          <span class="guide-kind">BricsCAD / AutoCAD</span>
+          <span class="g-title">Georeferencing a DWG</span>
+          <p>Move a drawing that sits at 0,0 onto real-world coordinates, tag its coordinate system and check the result on a control point.</p>
+          <span class="g-link">Read the guide &#8594;</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/Grishutov/cad-guides/blob/main/pdf-to-dwg.md" target="_blank" rel="noopener">
+          <span class="guide-kind">AutoCAD drafting</span>
+          <span class="g-title">PDF or image to a clean DWG</span>
+          <p>Import, scale from a known dimension, redraw on proper layers and deliver a DWG that someone else can work with.</p>
+          <span class="g-link">Read the guide &#8594;</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/Grishutov/cad-guides/blob/main/cut-and-fill.md" target="_blank" rel="noopener">
+          <span class="guide-kind">Earthworks</span>
+          <span class="g-title">Cut and fill volumes</span>
+          <p>From survey and grading design to earthwork volumes: surfaces, three methods, topsoil and shrink, and what to deliver.</p>
+          <span class="g-link">Read the guide &#8594;</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="hero foot">
+  <div class="wrap">
+    <h2>Send me one sheet to start</h2>
+    <p class="lead">Messages go through Upwork or LinkedIn. Based in Paphos, Cyprus (UTC+2). English and Russian, metric and imperial units.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01f6d5a39a7c8194e1" target="_blank" rel="noopener">Upwork <span class="arr" aria-hidden="true">&#8599;</span></a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/sergei-grishutov-1b437939b" target="_blank" rel="noopener">LinkedIn <span class="arr" aria-hidden="true">&#8599;</span></a>
+      <a class="btn btn-ghost" href="https://github.com/Grishutov" target="_blank" rel="noopener">GitHub <span class="arr" aria-hidden="true">&#8599;</span></a>
+    </div>
+    <div class="foot-meta">
+      <span>© 2026 Sergei Grishutov</span>
+      <span>Quantity &amp; construction surveyor</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
